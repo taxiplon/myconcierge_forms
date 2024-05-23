@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>MyConcierge Sign In</title>
+</head>
+<body>
+    <img src="../images/myconcierge-logo.svg" alt="MyConcierge Logo" width="300" height="100" id="myConciergeLogoIndex" style="width:50%">
+    <div id="profil">
+        <h4>Επιλέξτε την ιδιότητά σας:</h4>
+    </div>
+    <form action="/submitIndex" method="post" class="customerForm" id="customerType">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cType" id="hotel" value="hotel" required>
+            <label class="form-check-label" for="cType">
+              Ξενοδοχείο/Διαμέρισμα/Airbnb
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cType" id="transfer" value="transfer" required>
+            <label class="form-check-label" for="cType">
+              Προμηθευτής Υπηρεσιών Μετακίνησης
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cType" id="tour" value="tour" required>
+            <label class="form-check-label" for="cType">
+                Προμηθευτής Υπηρεσιών Περιηγήσεων
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cType" id="rentacar" value="rentacar" required>
+            <label class="form-check-label" for="cType">
+                Προμηθευτής Ενοικίασης Αυτοκινήτων
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cType" id="boat" value="boat" required>
+            <label class="form-check-label" for="cType">
+                Προμηθευτής Ενοικίασης Σκαφών
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cType" id="reservation" value="reservation" required>
+            <label class="form-check-label" for="cType">
+             Εστιατόριο, Bar κλπ.
+            </label>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" id="submitIndex">Επόμενο</button>
+        </div>
+    </form>
+    
+</body>
+</html>

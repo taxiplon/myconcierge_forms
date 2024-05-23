@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Hotel/Airbnb</title>
+</head>
+<body>
+  <img src="../images/myconcierge-logo.svg" alt="MyConcierge Logo" width="300" height="100" id="myConciergeLogo">
+  <div class="everypayTitle">
+      <h1>Bar/Cafe/Restaurant</h1>
+    </div>
+    <div class="relative">
+        <form class="row g-3" id="resForm"  method="post" enctype="multipart/form-data">
+            <div class="col-md-6">
+              <label for="resTitle" class="form-label">ΕΠΩΝΥΜΙΑ ΕΤΑΙΡΕΙΑΣ</label>
+              <input type="text" name ="resTitle" class="form-control" id="resTitle" required>
+            </div>
+            <div class="col-md-6">
+                <label for="resURL" class="form-label">WEBSITE URL</label>
+                <input type="text" name ="resURL" class="form-control" id="resURL" required>
+            </div>
+            <div class="col-md-6">
+                <label for="resVat" class="form-label">ΑΦΜ</label>
+                <input type="text" name ="resVat" class="form-control" id="resVat" required>
+            </div>
+            <div class="col-md-6">
+                <label for="resPhone" class="form-label">ΤΗΛΕΦΩΝΟ</label>
+                <input type="text" name ="resPhone" class="form-control" id="resPhone" required>
+            </div>
+            <div class="col-md-6">
+                <label for="resNotEmail" class="form-label">EMAIL ΕΙΔΟΠΟΙΗΣΕΩΝ</label>
+                <input type="text" name ="resNotEmail" class="form-control" id="resNotEmail" required>
+            </div>
+            <div class="col-md-6">
+                <label for="resEmail" class="form-label">EMAIL ΤΙΜΟΛΟΓΗΣΗΣ</label>
+                <input type="text" name ="resEmail" class="form-control" id="resEmail" required>
+            </div>
+            <div class="col-md-6">
+                <label for="resAddress" class="form-label">ΔΙΕΥΘΥΝΣΗ</label>
+                <input type="text" name ="resAddress" class="form-control" id="resAddress" required>
+              </div>
+              <div class="col-md-6">
+                <label for="resZipCode" class="form-label">ΤΚ</label >
+                <input name ="resZipCode" type="text" class="form-control" id="resZipCode" required>
+              </div>
+              <div class="col-md-6">
+                <label for="resCat" class="form-label">ΚΑΤΗΓΟΡΙΑ</label>
+                <input type="text" name ="resCat" class="form-control" id="resCat" placeholder="πχ. Εστιατόριο" required>
+            </div>
+            <div class="col-md-6">
+                <p>ΑΝΕΒΑΣΤΕ ΜΕΧΡΙ 3 ΦΩΤΟΓΡΑΦΙΕΣ</p>
+                <input type="file" id="resImages" name="resImages" accept="image/*" accept="image/*" multiple required>
+            </div>
+            <div class="col-md-6">
+                <label for="resMinCon" class="form-label">ΕΛΑΧΙΣΤΗ ΚΑΤΑΝΑΛΩΣΗ</label >
+                <input name ="resMinCon" type="text" class="form-control" id="resMinCon" placeholder="πχ. 0€" required>
+            </div>
+            <div class="col-md-6">
+                <label for="resPrice" class="form-label">ΕΠΙΠΕΔΟ ΤΙΜΗΣ: </label>
+
+                <select name="resPrice" id="resPrice" class="form-control" required>
+                <option value="1">1 - €</option>
+                <option value="2">2 - €€</option>
+                <option value="3">3 - €€€</option>
+                <option value="4">4 - €€€€</option>
+                <option value="5">5 - €€€€€</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="resDescription" class="form-label">ΠΕΡΙΓΡΑΦΗ</label>
+                <textarea name ="resDescription" class="form-control" id="resDescription" rows="3" ></textarea>
+            </div>
+            <br><br>
+            <div class="row" style="margin-top: 20px;" id="choose">
+                <div class="col-6">
+                    <div class="col-12">
+                        <label style="margin-bottom: 10px;">ΗΜΕΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ</label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="monday" class="form-check-input" type="checkbox" value="openMonday" id="monday" >
+                        <label class="form-check-label" for="monday">
+                          Δευτέρα
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="tuesday" class="form-check-input" type="checkbox" value="openTuesday" id="tuesday" >
+                        <label class="form-check-label" for="tuesday">
+                          Τρίτη
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="wednesday" class="form-check-input" type="checkbox" value="opanWednesday" id="wednesday" >
+                        <label class="form-check-label" for="wednesday">
+                          Τετάρτη
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="thirsday" class="form-check-input" type="checkbox" value="openThirsday" id="thirsday" >
+                        <label class="form-check-label" for="thirsday">
+                          Πέμπτη
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="friday" class="form-check-input" type="checkbox" value="openFriday" id="friday" >
+                        <label class="form-check-label" for="friday">
+                            Παρασκευή
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="suterday" class="form-check-input" type="checkbox" value="openSuterday" id="suterday" >
+                        <label class="form-check-label" for="suterday">
+                          Σάββατο
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="sunday" class="form-check-input" type="checkbox" value="openSunday" id="sunday" >
+                        <label class="form-check-label" for="sunday">
+                          Κυριακή
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="col-12">
+                        <label style="margin-bottom: 10px;">ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ</label>
+                    </div>
+                    <div class="col-12">
+                        <label for="resOpen" class="form-label">ΑΠΟ</label>
+                        <input type="text" name ="resOpen" class="form-control" id="resOpen" placeholder="πχ. 09:00" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="resClose" class="form-label">ΕΩΣ</label>
+                        <input type="text" name ="resClose" class="form-control" id="resClose"  placeholder="πχ. 23:00" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" id="submitHotel">Υποβολή</button>
+            </div>
+          </form>
+      </div>
+</body>
+</html>

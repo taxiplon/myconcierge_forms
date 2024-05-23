@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Tour Prices</title>
+</head>
+<body>
+  <img src="../images/myconcierge-logo.svg" alt="MyConcierge Logo" width="300" height="100" id="myConciergeLogo">
+  <div class="everypayTitle">
+      <h1>Τιμοκατάλογος Περιηγήσεων</h1>
+    </div>
+    <form class="row g-3" id="tourPricesForm"  method="POST">
+      <table id="dynamic-table">
+        <thead>
+        <tr>
+            <th>ΤΟΠΟΘΕΣΙΑ</th>
+            <th>ΤΥΠΟΣ ΟΧΗΜΑΤΟΣ</th>
+            <th>ΤΙΜΗ</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Rows will be generated here -->
+        </tbody>
+      </table>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary" id="submitTourPrices">Υποβολή</button>
+      </div>
+    </form>
+        
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const locations = ["ΑΚΡΟΠΟΛΗ", "ΚΑΠΕ ΣΟΥΝΙΟ", "ΔΕΛΦΟΙ", "ΕΠΙΔΑΥΡΟΣ", "ΜΕΤΕΟΡΑ", "ΝΑΟΣ ΤΟΥ ΥΦΑΙΣΤΟΥ", "ΜΥΚΗΝΕΣ", "ΝΑΥΠΛΙΟ", "ΑΡΧΑΙΑ ΟΛΥΜΠΙΑ"];
+        const vehicleTypes = ["Taxi", "Executive", "Limo", "Mini Van", "Mini Bus"];
+      
+        const tableBody = document.querySelector('#dynamic-table tbody');
+
+        for (let i = 0; i < 45; i++) {
+          const row = document.createElement('tr');
+
+          // Location column
+          if (i % 5 === 0) {
+            const locationCell = document.createElement('td');
+            locationCell.textContent = locations[i / 5];
+            locationCell.setAttribute('rowspan', '5');
+            row.appendChild(locationCell);
+          }
+
+          // Vehicle type column
+          if (i % 5 === 0) {
+            const vehicleTypeCell = document.createElement('td');
+            vehicleTypeCell.textContent = vehicleTypes[0];
+            row.appendChild(vehicleTypeCell);
+          } else {
+            const vehicleTypeCell = document.createElement('td');
+            vehicleTypeCell.textContent = vehicleTypes[i % 5];
+            row.appendChild(vehicleTypeCell);
+          }
+
+          // Price column
+          const priceCell = document.createElement('td');
+          const priceInput = document.createElement('input');
+          priceInput.type = 'text';
+          priceInput.name = `price${i + 1}`;
+          priceInput.classList.add('form-control'); // Add the class 'form-control' to the input
+          priceCell.appendChild(priceInput);
+          row.appendChild(priceCell);
+
+          tableBody.appendChild(row);
+        }
+      });
+    </script>
+
+  </body>
+</html>

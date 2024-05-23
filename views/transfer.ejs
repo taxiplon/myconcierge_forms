@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Transfer</title>
+</head>
+<body>
+    <img src="../images/myconcierge-logo.svg" alt="MyConcierge Logo" width="300" height="100" id="myConciergeLogo">
+    <div class="everypayTitle">
+      <h1>Συμπληρώστε τα στοιχεία σας</h1>
+    </div>
+    <div class="relative">
+        <form class="row g-3" id="transferSuplierForm"  action="/transferSubmit" method="post" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label for="tsTitle" class="form-label">ΕΠΩΝΥΜΙΑ ΕΠΙΧΕΙΡΗΣΗΣ</label>
+                <input name="tsTitle" type="text" class="form-control" id="tsTitle" required>
+            </div>
+            <div class="col-md-6">
+                <label for="tsVat" class="form-label">ΑΦΜ</label>
+                <input name="tsVat" type="text" class="form-control" id="tsVat" required>
+            </div>
+            <div class="col-md-6">
+                <label for="tsAEmail" class="form-label">EMAIL ΤΙΜΟΛΟΓΗΣΗΣ</label>
+                <input name="tsAEmail" type="text" class="form-control" id="tsAEmail" required>
+            </div>
+            <div class="col-md-6">
+                <label for="tsNEmail" class="form-label">EMAIL ΕΙΔΟΠΟΙΗΣΕΩΝ</label>
+                <input name="tsNEmail" type="text" class="form-control" id="tsNEmail" required>
+            </div>
+            <div class="col-md-6">
+                <label for="tsAddress" class="form-label">ΔΙΕΥΘΥΝΣΗ</label>
+                <input name="tsAddress" type="text" class="form-control" id="tsAddress" required>
+            </div>
+            <div class="col-md-6">
+                <label for="tsZipCode" class="form-label">ΤΚ</label >
+                <input name="tsZipCode" type="text" class="form-control" id="tsZipCode" required>
+            </div>
+            <div class="col-md-6">
+                <label for="tsPhone" class="form-label">ΤΗΛΕΦΩΝΟ</label>
+                <input name="tsPhone" type="text" class="form-control" id="tsPhone" required>
+            </div>
+            <div class="col-md-6">
+                <p>ΑΝΕΒΑΣΤΕ ΤΟ LOGO ΣΑΣ</p>
+                <input type="file" id="tsLogo" name="tsLogo" accept="image/*" required>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" id="submitTransfSup">Υποβολή</button>
+            </div>
+        </form>
+    </div>
+    <!-- <script src="transfer.js"></script> -->
+</body>
+</html>

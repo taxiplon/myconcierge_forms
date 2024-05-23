@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Transfer Prices for Athens</title>
+</head>
+<body>
+  <img src="../images/myconcierge-logo.svg" alt="MyConcierge Logo" width="300" height="100" id="myConciergeLogo">
+    <div class="everypayTitle">
+        <h1>Τιμοκατάλογος</h1>
+    </div>
+    <form class="row g-3" id="transferPricesForm"  method="POST">
+        <div class="col-12">
+            <table class="transferPricesAthens" id="transferTable">
+                <tr>
+                  <th style="width: 20%;">Από</th>
+                  <th style="width: 20%;">Πρός</th>
+                  <th style="width: 20%;">Τύπος Οχήματος</th>
+                  <th style="width: 20%;">Τιμή Ημέρας</th>
+                  <th style="width: 20%;">Τιμή Νύχτας</th>
+                </tr>
+            </table>
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-primary" id="addPrices">+</button>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary" id="submitTransPrices">Υποβολή</button>
+          </div>
+    </form>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const addPricesButton = document.getElementById('addPrices');
+          const transferTableBody = document.querySelector('#transferTable tbody');
+
+          addPricesButton.addEventListener('click', function() {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="text" name="fromAddress" class="form-control"></td>
+            <td><input type="text" name="toAddress" class="form-control"></td>
+            <td>
+                <select name="vehicleType" class="form-control">
+                  <option value="noCarType">Επιλέξτε Όχημα</option>
+                  <option value="Standard Taxi">Standard Taxi</option>
+                  <option value="Executive">Executive</option>
+                  <option value="Limo">Limo</option>
+                  <option value="Mini Van">Mini Van</option>
+                  <option value="Mini Bus">Mini Bus</option>
+                </select>
+            </td>
+            <td><input type="text" name="dayPrice" class="form-control"></td>
+            <td><input type="text" name="nightPrice" class="form-control"></td>
+        `;
+        transferTableBody.appendChild(newRow);
+    });
+      });
+  </script>
+</body>
+</html>

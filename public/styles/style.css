@@ -1,0 +1,313 @@
+.form-control{
+    border-radius: 10px;
+}
+
+#loginTitle{
+    color: black;
+}
+  
+#loginForm  {
+    width: 60%;
+    margin-top: 50px;
+}
+#registerForm  {
+    width: 60%;
+    margin-top: 50px;
+}
+
+#hotelForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#transferSuplierForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#tourSupplierForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#boatSupplierForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#rncSupplierForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#resForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#everyPayForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#transferPricesForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#tourPricesForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#carPhotosForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#boatPricesForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+#boatPhotosForm{
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20px;
+}
+
+
+.left-half, .right-half {
+    height: 100vh;
+}
+.left-half {
+    background-color: #c9e6e1;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.right-half {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* This is to ensure the image is visible */
+}
+
+div.relative {
+    position: relative;
+  }
+
+.everypayTitle{
+    margin-top: 50px;
+    margin-right: 300px;
+    margin-left: 300px;
+    text-align: center;
+}
+
+
+#profil{
+    margin-top: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.customerForm{
+    margin-top: 60px;
+    margin-bottom: 20px;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn.btn-primary{
+    background-color: #2a9887; /* Green */
+    border-radius: 10px;
+    border-color: #2a9887;
+    color: white;
+    padding: 5px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#submitLogin{
+    background-color: #2a9887; /* Green */
+    border-radius: 10px;
+    border-color: #2a9887;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#myConciergeLogo{
+    margin-top: 10px;
+    margin-left: 400px;
+}
+
+#myConciergeLogoIndex{
+    margin-top: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-check {
+    margin: auto;
+    width: 20%;
+    border: 0px;
+    padding: 10px;
+  }
+
+  .form-check.form-switch{
+    margin-left: 30px;
+    border: 0px;
+    padding: 10px;
+  }
+
+#submitIndex{
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+
+#submitHotel{
+    margin-top: 30px;
+}
+
+#tsPrices{
+    margin-top: 30px;
+
+}
+
+.transferPricesAthens {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+  
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr {
+    background-color: #ffffff;
+}
+
+th {
+    background-color: #dddddd;
+}
+
+#submitTransfSup{
+    margin-top: 30px;
+}
+
+#submitTransPricesAthens{
+    margin-top: 30px;
+}
+
+#thanks{
+    margin-top: 200px;
+}
+
+#addPrices{
+    background-color: #2a9887; /* Green */
+    border-radius: 50%;
+    border-color: #2a9887;
+    color: white;
+    padding: 10px 20px;
+    text-align: right;
+    text-decoration: none;
+    font-size: 16px;
+    float: right;
+    margin-top: 20px;
+}
+
+#addRNCPrices{
+    background-color: #2a9887; /* Green */
+    border-radius: 50%;
+    border-color: #2a9887;
+    color: white;
+    padding: 10px 20px;
+    text-align: right;
+    text-decoration: none;
+    font-size: 16px;
+    float: right;
+    margin-top: 20px;
+}
+
+#addBoatPrices{
+    background-color: #2a9887; /* Green */
+    border-radius: 50%;
+    border-color: #2a9887;
+    color: white;
+    padding: 10px 20px;
+    text-align: right;
+    text-decoration: none;
+    font-size: 16px;
+    float: right;
+    margin-top: 20px;
+}
+
+#rncPricesForm {
+    width: calc(100% - 40px); /* Full width with 10px margin from left and right */
+    margin: 0 auto; /* Center the form */
+}
+#rncPricesForm .row {
+    margin-left: 20px; /* Add margin from left */
+    margin-right: 20px; /* Add margin from right */
+}
+
+#rncTable th,
+#rncTable td {
+    width: calc(100% / 14); /* Equal width columns */
+    text-align: center; /* Center align text */
+}
+

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Hotel/Airbnb</title>
+</head>
+<body>
+  <img src="../images/myconcierge-logo.svg" alt="MyConcierge Logo" width="300" height="100" id="myConciergeLogo">
+  <div class="everypayTitle">
+      <h1>Συμπληρώστε τα στοιχεία σας</h1>
+    </div>
+    <div class="relative">
+        <form class="row g-3" id="hotelForm" method="post" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <input class="form-check-input" type="radio" name="hType" id="typeHotel" value="typeHotel" checked required>
+                <label class="form-check-label" for="typeHotel">
+                  Ξενοδοχείο
+                </label>
+                <input class="form-check-input" type="radio" name="hType" id="typeAirbnb" value="typeAirbnb" required>
+                <label class="form-check-label" for="typeAirbnb">
+                    Airbnb
+                </label>
+                <input class="form-check-input" type="radio" name="hType" id="typeVilla" value="typeVilla" required>
+                <label class="form-check-label" for="typeVilla">
+                    Βίλα
+                </label>
+            </div>
+            <div class="col-md-6">
+              <label for="hTitle" class="form-label">ΕΠΩΝΥΜΙΑ ΕΤΑΙΡΕΙΑΣ</label>
+              <input type="text" name ="hTitle" class="form-control" id="hTitle" required>
+            </div>
+            <div class="col-md-6">
+                <label for="hVat" class="form-label">ΑΦΜ</label>
+                <input type="text" name ="hVat" class="form-control" id="hVat" required>
+            </div>
+            <div class="col-md-6">
+                <label for="hPhone" class="form-label">ΤΗΛΕΦΩΝΟ</label>
+                <input type="text" name ="hPhone" class="form-control" id="hPhone" required>
+            </div>
+            <div class="col-md-6">
+                <label for="hEmail" class="form-label">EMAIL ΕΙΔΟΠΟΙΗΣΕΩΝ</label>
+                <input type="text" name ="hEmail" class="form-control" id="hEmail" required>
+            </div>
+            <div class="col-md-6">
+                <label for="address" class="form-label">ΔΙΕΥΘΥΝΣΗ</label>
+                <input type="text" name ="address" class="form-control" id="address" required>
+              </div>
+              <div class="col-md-6">
+                <label for="zipCode" class="form-label">ΤΚ</label >
+                <input name ="zipCode" type="text" class="form-control" id="zipCode" required>
+              </div>
+            <div class="col-6">
+              <label for="description" class="form-label">ΚΕΙΜΕΝΟ ΚΑΛΩΣΟΡΙΣΜΑΤΟΣ</label>
+              <textarea name ="description" class="form-control" id="description" rows="3" required></textarea>
+            </div>
+            <div class="col-md-6">
+                <p>ΑΝΕΒΑΣΤΕ 3 ΦΩΤΟΓΡΑΦΙΕΣ</p>
+                <input type="file" id="hotelImages" name="hotelImages" accept="image/*" accept="image/*" multiple required>
+            </div>
+            <br><br>
+            <div class="row" style="margin-top: 20px;" id="choose">
+                <div class="col-6">
+                    <div class="col-12">
+                        <label style="margin-bottom: 10px;">ΕΠΙΛΕΞΤΕ ΥΠΗΡΕΣΙΕΣ</label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="serviceTransfer" class="form-check-input" type="checkbox" value="wantTransfer" id="serviceTransfer">
+                        <label class="form-check-label" for="serviceTransfer">
+                          Transfers
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="serviceTour" class="form-check-input" type="checkbox" value="wantTour" id="serviceTour">
+                        <label class="form-check-label" for="serviceTour">
+                          Tours
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="serviceRNC" class="form-check-input" type="checkbox" value="wantRNC" id="serviceRNC">
+                        <label class="form-check-label" for="serviceRNC">
+                          Rent a Car
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="serviceBoat" class="form-check-input" type="checkbox" value="wantBoat" id="serviceBoat">
+                        <label class="form-check-label" for="serviceBoat">
+                          Rent a Boat
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="serviceHel" class="form-check-input" type="checkbox" value="wantHel" id="serviceHel">
+                        <label class="form-check-label" for="serviceHel">
+                            Rent a Helicopter
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="serviceReservations" class="form-check-input" type="checkbox" value="wantReservations" id="serviceReservations">
+                        <label class="form-check-label" for="serviceReservations">
+                          Make a Reservations
+                        </label>
+                    </div>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <input name ="serviceMiniMarket" class="form-check-input" type="checkbox" value="wantMarket" id="serviceMiniMarket">
+                        <label class="form-check-label" for="serviceMiniMarket">
+                          Purchase Products
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="col-12">
+                        <label style="margin-bottom: 10px;">ΠΡΟΜΗΘΕΥΤΕΣ</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name ="haveTransfer" class="form-check-input" type="checkbox" id="haveTransfer">
+                        <label class="form-check-label" for="haveTransfer">ΕΧΩ</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name ="haveTour" class="form-check-input" type="checkbox" id="haveTour">
+                        <label class="form-check-label" for="haveTour">ΕΧΩ</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name ="haveRNC" class="form-check-input" type="checkbox" id="haveRNC">
+                        <label class="form-check-label" for="haveRNC">ΕΧΩ</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name ="haveBoat" class="form-check-input" type="checkbox" id="haveBoat">
+                        <label class="form-check-label" for="haveBoat">ΕΧΩ</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name ="haveHelic" class="form-check-input" type="checkbox" id="haveHelic">
+                        <label class="form-check-label" for="haveHelic">ΕΧΩ</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name ="haveReserv" class="form-check-input" type="checkbox" id="haveReserv">
+                        <label class="form-check-label" for="haveReserv">ΕΧΩ</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name ="haveProd" class="form-check-input" type="checkbox" id="haveProd">
+                        <label class="form-check-label" for="haveProd">ΕΧΩ</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" id="submitHotel">Υποβολή</button>
+            </div>
+          </form>
+      </div>
+</body>
+</html>
