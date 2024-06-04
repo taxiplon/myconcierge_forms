@@ -831,7 +831,7 @@ app.get('/boatPhotos', compression(), (req, res) => {
 });
 
 app.post('/boatPhotos', compression(), (req, res) => {
-  const { boatSupplierId, numOfRows, inputsColumn1 } = req.query;
+  const { boatSupplierId, numOfRows, inputsColumn1, boatModels } = req.query;
 
   // Define the uploadFields middleware function inside the route handler
   const uploadFields = (req, res, next) => {
@@ -890,8 +890,8 @@ app.post('/boatPhotos', compression(), (req, res) => {
 
           // Insert data into the database
           await client.query(
-            `INSERT INTO boat_photos (boat_supplier_id, photo1, photo2, photo3) VALUES ($1, $2, $3, $4)`,
-            [boatSupplierId, photo1, photo2, photo3]
+            `INSERT INTO boat_photos (boat_supplier_id, photo1, photo2, photo3, model) VALUES ($1, $2, $3, $4, $5)`,
+            [boatSupplierId, photo1, photo2, photo3, boatModels[i]]
           );
         }
 
@@ -948,6 +948,9 @@ app.post('/reservation', compression(), upload.array('resImages', 3), (req, res)
         res.status(500).send('Internal Server Error');
         return;
       }
+      console.log(resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
+        resMinCon, resPrice, resDescription, resOpen, resClose,
+        weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday);
 
       client.query(
         `INSERT INTO reservations (
