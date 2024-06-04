@@ -604,7 +604,7 @@ app.get('/rentacarPhotos', compression(), (req, res) => {
 
 
 app.post('/rentacarPhotos', compression(), (req, res) => {
-  const { rncSupplierId, numberOfRows, inputsFromFirstColumn, carModels } = req.query;
+  const { rncSupplierId, numberOfRows, inputsFromFirstColumn } = req.query;
 
   // Define the uploadFields middleware function inside the route handler
   const uploadFields = (req, res, next) => {
@@ -664,7 +664,7 @@ app.post('/rentacarPhotos', compression(), (req, res) => {
           // Insert data into the database
           await client.query(
             `INSERT INTO rnc_photos (model,  photo1, photo2, photo3, rnc_supplier_id) VALUES ($1, $2, $3, $4, $5)`,
-            [carModels[i], photo1, photo2, photo3, rncSupplierId]
+            [inputsFromFirstColumn[i], photo1, photo2, photo3, rncSupplierId]
           );
         }
 
