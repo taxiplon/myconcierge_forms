@@ -1027,7 +1027,7 @@ app.post('/everypay', compression(), (req, res) => {
     // Insert data into the everypay_table
     client.query(
       "INSERT INTO everypay_table (companyName, companyTile, companyDesc, companyEmail, companyVAT, companyPhone, companyAddress, companyZipCode, companyIBAN, companyNameIBAN, transfer_supplier_id, customer_id, tour_supplier_id, rnc_supplier_id, boat_supplier_id, res_supplier_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)",
-      [values],
+      values,
       (err, result) => {
         // Release the client back to the pool
         release();
