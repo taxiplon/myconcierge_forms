@@ -663,8 +663,8 @@ app.post('/rentacarPhotos', compression(), (req, res) => {
 
           // Insert data into the database
           await client.query(
-            `INSERT INTO rnc_photos (model,  photo1, photo2, photo3, rnc_supplier_id) VALUES ($1, $2, $3, $4, $5)`,
-            [inputsFromFirstColumn[i], photo1, photo2, photo3, rncSupplierId]
+            `INSERT INTO rnc_photos (photo1, photo2, photo3, rnc_supplier_id) VALUES ($1, $2, $3, $4)`,
+            [photo1, photo2, photo3, rncSupplierId]
           );
         }
 
@@ -890,8 +890,8 @@ app.post('/boatPhotos', compression(), (req, res) => {
 
           // Insert data into the database
           await client.query(
-            `INSERT INTO boat_photos (boat_supplier_id, photo1, photo2, photo3, model) VALUES ($1, $2, $3, $4, $5)`,
-            [boatSupplierId, photo1, photo2, photo3, boatModels[i]]
+            `INSERT INTO boat_photos (boat_supplier_id, photo1, photo2, photo3) VALUES ($1, $2, $3, $4)`,
+            [boatSupplierId, photo1, photo2, photo3]
           );
         }
 
@@ -948,9 +948,7 @@ app.post('/reservation', compression(), upload.array('resImages', 3), (req, res)
         res.status(500).send('Internal Server Error');
         return;
       }
-      console.log(resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
-        resMinCon, resPrice, resDescription, resOpen, resClose,
-        weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday);
+
 
       client.query(
         `INSERT INTO reservations (
