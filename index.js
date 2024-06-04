@@ -1004,23 +1004,23 @@ app.post('/everypay', compression(), (req, res) => {
       return;
     }
 
-    if(transferSupplierId == undefined){
-      transferSupplierId ===null;
+    if(transferSupplierId === undefined){
+      transferSupplierId = null;
     }
-    if(hotelId == undefined){
-      hotelId == null;
+    if(hotelId === undefined){
+      hotelId = null;
     }
-    if(tourSupplierId == undefined){
-      tourSupplierId == null;
+    if(tourSupplierId === undefined){
+      tourSupplierId = null;
     }
-    if(rncSupplierId == undefined){
-      rncSupplierId == null;
+    if(rncSupplierId === undefined){
+      rncSupplierId = null;
     }
-    if(boatSupplierId == undefined){
-      boatSupplierId == null;
+    if(boatSupplierId === undefined){
+      boatSupplierId = null;
     }
-    if(resSupplierId == undefined){
-      resSupplierId == null;
+    if(resSupplierId ===undefined){
+      resSupplierId = null;
     }
     console.log(req.body.cname, req.body.ctitle, req.body.description, req.body.email, req.body.vatNumber, req.body.phoneNumber, req.body.address, req.body.zipCode, req.body.ibanNumber, req.body.ibanName, transferSupplierId, hotelId, tourSupplierId, rncSupplierId, boatSupplierId, resSupplierId);
 
