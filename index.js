@@ -1003,6 +1003,25 @@ app.post('/everypay', compression(), (req, res) => {
       res.status(500).send("Internal Server Error");
       return;
     }
+
+    if(transferSupplierId = undefined){
+      transferSupplierId = null;
+    }
+    if(hotelId = undefined){
+      hotelId = null;
+    }
+    if(tourSupplierId = undefined){
+      tourSupplierId = null;
+    }
+    if(rncSupplierId = undefined){
+      rncSupplierId = null;
+    }
+    if(boatSupplierId = undefined){
+      boatSupplierId = null;
+    }
+    if(resSupplierId = undefined){
+      resSupplierId = null;
+    }
     
     // Insert data into the everypay_table
     client.query(
