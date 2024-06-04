@@ -32,8 +32,7 @@ app.set('view engine', 'ejs');
 // Middleware to parse JSON and URL-encoded bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));0
-//app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, "js")));
+app.use(express.static("public"));
 app.use(compression());
 app.use(
   session({
