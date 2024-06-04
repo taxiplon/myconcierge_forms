@@ -1022,6 +1022,8 @@ app.post('/everypay', compression(), (req, res) => {
     if(resSupplierId = undefined){
       resSupplierId = null;
     }
+    console.log(req.body.cname, req.body.ctitle, req.body.description, req.body.email, req.body.vatNumber, req.body.phoneNumber, req.body.address, req.body.zipCode, req.body.ibanNumber, req.body.ibanName, transferSupplierId, hotelId, tourSupplierId, rncSupplierId, boatSupplierId, resSupplierId);
+
     
     // Insert data into the everypay_table
     client.query(
