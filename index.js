@@ -1015,6 +1015,7 @@ app.post('/everypay', compression(), (req, res) => {
         if (err) {
           debug("Error executing query:", err);
           res.status(500).send("Internal Server Error");
+          console.log("testttttttttttt")
           return;
         }
 
