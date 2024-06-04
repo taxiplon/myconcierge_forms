@@ -1004,31 +1004,30 @@ app.post('/everypay', compression(), (req, res) => {
       return;
     }
 
-    if(transferSupplierId === undefined){
-      transferSupplierId = null;
-    }
-    if(hotelId === undefined){
-      hotelId = null;
-    }
-    if(tourSupplierId === undefined){
-      tourSupplierId = null;
-    }
-    if(rncSupplierId === undefined){
-      rncSupplierId = null;
-    }
-    if(boatSupplierId === undefined){
-      boatSupplierId = null;
-    }
-    if(resSupplierId ===undefined){
-      resSupplierId = null;
-    }
-    console.log(req.body.cname, req.body.ctitle, req.body.description, req.body.email, req.body.vatNumber, req.body.phoneNumber, req.body.address, req.body.zipCode, req.body.ibanNumber, req.body.ibanName, transferSupplierId, hotelId, tourSupplierId, rncSupplierId, boatSupplierId, resSupplierId);
+    const values = [
+      req.body.cname,
+      req.body.ctitle,
+      req.body.description,
+      req.body.email,
+      req.body.vatNumber,
+      req.body.phoneNumber,
+      req.body.address,
+      req.body.zipCode,
+      req.body.ibanNumber,
+      req.body.ibanName,
+      transferSupplierId !== undefined ? transferSupplierId : null,
+      hotelId !== undefined ? hotelId : null,
+      tourSupplierId !== undefined ? tourSupplierId : null,
+      rncSupplierId !== undefined ? rncSupplierId : null,
+      boatSupplierId !== undefined ? boatSupplierId : null,
+      resSupplierId !== undefined ? resSupplierId : null
+  ];
 
     
     // Insert data into the everypay_table
     client.query(
       "INSERT INTO everypay_table (companyName, companyTile, companyDesc, companyEmail, companyVAT, companyPhone, companyAddress, companyZipCode, companyIBAN, companyNameIBAN, transfer_supplier_id, customer_id, tour_supplier_id, rnc_supplier_id, boat_supplier_id, res_supplier_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)",
-      [req.body.cname, req.body.ctitle, req.body.description, req.body.email, req.body.vatNumber, req.body.phoneNumber, req.body.address, req.body.zipCode, req.body.ibanNumber, req.body.ibanName, transferSupplierId, hotelId, tourSupplierId, rncSupplierId, boatSupplierId, resSupplierId],
+      [values],
       (err, result) => {
         // Release the client back to the pool
         release();
