@@ -957,11 +957,11 @@ app.post('/reservation', compression(), upload.array('resImages', 3), async (req
     images[2] ? Buffer.from(images[2]) : null
   ];
 
-  debug('Values to insert:', values);
+  console.log('Values to insert:', values);
 
   pool.connect((err, client, release) => {
     if (err) {
-      debug('Error acquiring client:', err);
+      console.log('Error acquiring client:', err);
       res.status(500).send('Internal Server Error');
       return;
     }
@@ -977,11 +977,11 @@ app.post('/reservation', compression(), upload.array('resImages', 3), async (req
       (error, result) => {
         release(); // Release the client back to the pool
         if (error) {
-          debug('Error inserting data:', error);
+          console.log('Error inserting data:', error);
           res.status(500).send('Internal Server Error');
         } else {
           const resSupplierId = result.rows[0].id;
-          debug('Inserted reservation with ID:', resSupplierId);
+          console.log('Inserted reservation with ID:', resSupplierId);
           res.redirect(`/everypay?resSupplierId=${resSupplierId}`);
         }
       }
