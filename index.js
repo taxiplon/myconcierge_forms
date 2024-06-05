@@ -922,9 +922,9 @@ app.get('/reservation', compression(), (req, res) => {
 
 
 app.post('/reservation', compression(), upload.array('resImages', 3), (req, res) => {
-
   const {
-    resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat, resMinCon, resPrice, resDescription, resOpen, resClose,
+    resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
+    resMinCon, resPrice, resDescription, resOpen, resClose,
   } = req.body;
 
   const weekdays = {
@@ -937,53 +937,58 @@ app.post('/reservation', compression(), upload.array('resImages', 3), (req, res)
     sunday: req.body.sunday ? true : false,
   };
 
-  // Processing the uploaded files
-  const images = req.files.map(file => fs.readFileSync(file.path));
-
+  // Process the uploaded files
+  let images;
   try {
-    // Insert data into the database
-    pool.connect((err, client, release) => {
-      if (err) {
-        debug('Error acquiring client:', err);
-        res.status(500).send('Internal Server Error');
-        return;
-      }
-
-      const values = [
-        resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
-        resMinCon, resPrice, resDescription, resOpen, resClose,
-        weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday,
-        Buffer.from(images[0] || ''), Buffer.from(images[1] || ''), Buffer.from(images[2] || '')
-      ];
-  
-      console.log('Values to insert:', values);
-
-
-      client.query(
-        `INSERT INTO reservations (
-          title, url, vat, phone, notification_email, billing_email, address, zip_code, category, 
-          min_consumption, price_level, description, open_time, close_time, 
-          monday, tuesday, wednesday, thirsday, friday, suterday, sunday, 
-          image1, image2, image3
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24) RETURNING id`,
-        values,
-        (error, result) => {
-          release(); // Release the client back to the pool
-          if (error) {
-            debug('Error inserting data:', error);
-            res.status(500).send('Internal Server Error');
-          } else {
-            const resSupplierId = result.rows[0].id;
-            res.redirect(`/everypay?resSupplierId=${resSupplierId}`);
-          }
-        }
-      );
-    });
+    images = req.files.map(file => fs.readFileSync(file.path));
+    debug('Images read successfully:', images.length);
   } catch (error) {
-    debug('Error processing file:', error);
-    res.status(500).send('Internal Server Error');
+    debug('Error reading files:', error);
+    res.status(500).send('Error processing uploaded files');
+    return;
   }
+
+  pool.connect((err, client, release) => {
+    if (err) {
+      debug('Error acquiring client:', err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    const values = [
+      resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
+      resMinCon, resPrice, resDescription, resOpen, resClose,
+      weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday,
+      images[0] ? Buffer.from(images[0]) : null, 
+      images[1] ? Buffer.from(images[1]) : null, 
+      images[2] ? Buffer.from(images[2]) : null
+    ];
+
+    debug('Values to insert:', values);
+
+    client.query(
+      `INSERT INTO reservations (
+        title, url, vat, phone, notification_email, billing_email, address, zip_code, category, 
+        min_consumption, price_level, description, open_time, close_time, 
+        monday, tuesday, wednesday, thirsday, friday, suterday, sunday, 
+        image1, image2, image3
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24) RETURNING id`,
+      values,
+      (error, result) => {
+        release(); // Release the client back to the pool
+        if (error) {
+          debug('Error inserting data:', error);
+          res.status(500).send('Internal Server Error');
+        } else {
+          const resSupplierId = result.rows[0].id;
+          debug('Inserted reservation with ID:', resSupplierId);
+          res.redirect(`/everypay?resSupplierId=${resSupplierId}`);
+        }
+      }
+    );
+  });
 });
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Route for displaying the everypay form
