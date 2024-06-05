@@ -44,21 +44,6 @@ app.use(
   })
 );
 
-app.use(session({
-  store: new pgSession({
-    pool,
-    tableName: 'sessions',
-  }),
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false, // Set to true if using HTTPS
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
-  },
-}));
-
-
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
