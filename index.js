@@ -992,10 +992,27 @@ app.get('/everypay', compression(), (req, res) => {
 
 });
 
-//when user submit hotelForm
 app.post('/everypay', compression(), (req, res) => {
-  // Extract hotelId and transferSupplierId from query parameters
-  const { hotelId, transferSupplierId, tourSupplierId, rncSupplierId, boatSupplierId, resSupplierId } = req.query;
+  // Extract hotelId and other supplier IDs from query parameters
+  const {
+    hotelId,
+    transferSupplierId,
+    tourSupplierId,
+    rncSupplierId,
+    boatSupplierId,
+    resSupplierId
+  } = req.query;
+
+  debug('Request query:', req.query);
+  debug('Request body:', req.body);
+
+  // Log individual query parameters
+  console.log('hotelId:', hotelId);
+  console.log('transferSupplierId:', transferSupplierId);
+  console.log('tourSupplierId:', tourSupplierId);
+  console.log('rncSupplierId:', rncSupplierId);
+  console.log('boatSupplierId:', boatSupplierId);
+  console.log('resSupplierId:', resSupplierId);
 
   pool.connect((err, client, release) => {
     if (err) {
@@ -1015,19 +1032,27 @@ app.post('/everypay', compression(), (req, res) => {
       req.body.zipCode,
       req.body.ibanNumber,
       req.body.ibanName,
-      transferSupplierId != undefined ? transferSupplierId : null,
+      transferSupplierId !== undefined ? transferSupplierId : null,
       hotelId !== undefined ? hotelId : null,
-      tourSupplierId != undefined ? tourSupplierId : null,
-      rncSupplierId != undefined ? rncSupplierId : null,
-      boatSupplierId != undefined ? boatSupplierId : null,
-      resSupplierId != undefined ? resSupplierId : null
-  ];
+      tourSupplierId !== undefined ? tourSupplierId : null,
+      rncSupplierId !== undefined ? rncSupplierId : null,
+      boatSupplierId !== undefined ? boatSupplierId : null,
+      resSupplierId !== undefined ? resSupplierId : null
+    ];
 
-  console.log(transferSupplierId != undefined);
-    
+    debug('Values to insert:', values);
+
     // Insert data into the everypay_table
     client.query(
-      "INSERT INTO everypay_table (companyName, companyTile, companyDesc, companyEmail, companyVAT, companyPhone, companyAddress, companyZipCode, companyIBAN, companyNameIBAN, transfer_supplier_id, customer_id, tour_supplier_id, rnc_supplier_id, boat_supplier_id, res_supplier_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)",
+      `INSERT INTO everypay_table (
+        companyName, companyTitle, companyDesc, companyEmail, companyVAT,
+        companyPhone, companyAddress, companyZipCode, companyIBAN, companyNameIBAN,
+        transfer_supplier_id, customer_id, tour_supplier_id, rnc_supplier_id,
+        boat_supplier_id, res_supplier_id
+      ) VALUES (
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
+        $11, $12, $13, $14, $15, $16
+      )`,
       values,
       (err, result) => {
         // Release the client back to the pool
