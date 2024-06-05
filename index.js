@@ -1003,9 +1003,6 @@ app.post('/everypay', compression(), (req, res) => {
     resSupplierId
   } = req.query;
 
-  debug('Request query:', req.query);
-  debug('Request body:', req.body);
-
   // Log individual query parameters
   console.log('hotelId:', hotelId);
   console.log('transferSupplierId:', transferSupplierId);
@@ -1040,7 +1037,7 @@ app.post('/everypay', compression(), (req, res) => {
       resSupplierId !== undefined ? resSupplierId : null
     ];
 
-    debug('Values to insert:', values);
+    console.log('Values to insert:', values);
 
     // Insert data into the everypay_table
     client.query(
