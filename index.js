@@ -949,6 +949,15 @@ app.post('/reservation', compression(), upload.array('resImages', 3), (req, res)
         return;
       }
 
+      const values = [
+        resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
+        resMinCon, resPrice, resDescription, resOpen, resClose,
+        weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday,
+        Buffer.from(images[0] || ''), Buffer.from(images[1] || ''), Buffer.from(images[2] || '')
+      ];
+  
+      console.log('Values to insert:', values);
+
 
       client.query(
         `INSERT INTO reservations (
@@ -957,12 +966,7 @@ app.post('/reservation', compression(), upload.array('resImages', 3), (req, res)
           monday, tuesday, wednesday, thirsday, friday, suterday, sunday, 
           image1, image2, image3
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24) RETURNING id`,
-        [
-          resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
-          resMinCon, resPrice, resDescription, resOpen, resClose,
-          weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday,
-          Buffer.from(images[0] || ''), Buffer.from(images[1] || ''), Buffer.from(images[2] || '')
-        ],
+        values,
         (error, result) => {
           release(); // Release the client back to the pool
           if (error) {
@@ -1003,13 +1007,6 @@ app.post('/everypay', compression(), (req, res) => {
     resSupplierId
   } = req.query;
 
-  // Log individual query parameters
-  console.log('hotelId:', hotelId);
-  console.log('transferSupplierId:', transferSupplierId);
-  console.log('tourSupplierId:', tourSupplierId);
-  console.log('rncSupplierId:', rncSupplierId);
-  console.log('boatSupplierId:', boatSupplierId);
-  console.log('resSupplierId:', resSupplierId);
 
   pool.connect((err, client, release) => {
     if (err) {
@@ -1036,8 +1033,6 @@ app.post('/everypay', compression(), (req, res) => {
       boatSupplierId !== undefined ? boatSupplierId : null,
       resSupplierId !== undefined ? resSupplierId : null
     ];
-
-    console.log('Values to insert:', values);
 
     // Insert data into the everypay_table
     client.query(
