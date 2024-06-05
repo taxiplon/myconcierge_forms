@@ -965,6 +965,7 @@ app.post('/reservation', compression(), upload.array('resImages', 3), (req, res)
     ];
 
     console.log('Values to insert:', values);
+    console.log("debugging");
 
     client.query(
       `INSERT INTO reservations (
