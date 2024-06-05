@@ -1023,6 +1023,7 @@ app.post('/everypay', compression(), (req, res) => {
       resSupplierId !== undefined ? resSupplierId : null
   ];
 
+  console.log(transferSupplierId !== undefined);
     
     // Insert data into the everypay_table
     client.query(
@@ -1033,7 +1034,6 @@ app.post('/everypay', compression(), (req, res) => {
         release();
 
         if (err) {
-          console.log(req.body.cname, req.body.ctitle, req.body.description, req.body.email, req.body.vatNumber, req.body.phoneNumber, req.body.address, req.body.zipCode, req.body.ibanNumber, req.body.ibanName, transferSupplierId, hotelId, tourSupplierId, rncSupplierId, boatSupplierId, resSupplierId);
           debug("Error executing query:", err);
           res.status(500).send("Internal Server Error");
           return;
