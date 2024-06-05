@@ -1015,15 +1015,15 @@ app.post('/everypay', compression(), (req, res) => {
       req.body.zipCode,
       req.body.ibanNumber,
       req.body.ibanName,
-      transferSupplierId !== undefined ? transferSupplierId : null,
+      transferSupplierId != undefined ? transferSupplierId : null,
       hotelId !== undefined ? hotelId : null,
-      tourSupplierId !== undefined ? tourSupplierId : null,
-      rncSupplierId !== undefined ? rncSupplierId : null,
-      boatSupplierId !== undefined ? boatSupplierId : null,
-      resSupplierId !== undefined ? resSupplierId : null
+      tourSupplierId != undefined ? tourSupplierId : null,
+      rncSupplierId != undefined ? rncSupplierId : null,
+      boatSupplierId != undefined ? boatSupplierId : null,
+      resSupplierId != undefined ? resSupplierId : null
   ];
 
-  console.log(transferSupplierId !== undefined);
+  console.log(transferSupplierId != undefined);
     
     // Insert data into the everypay_table
     client.query(
