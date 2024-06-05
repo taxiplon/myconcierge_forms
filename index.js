@@ -14,7 +14,8 @@ import flash from 'connect-flash';
 import debug from 'debug';
 import compression from 'compression';
 import helmet from "helmet";
-import { rateLimit } from 'express-rate-limit'
+import { rateLimit } from 'express-rate-limit';
+import PgSession from 'connect-pg-simple';
 
 
 
@@ -22,6 +23,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 const debugMain = debug('app:main');
 const debugDB = debug('app:db');
+const pgSession = PgSession(session);
 
 
 const saltRounds = process.env.ENCRYPTION_ROUNDS;
@@ -34,13 +36,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));0
 app.use(express.static("public"));
 app.use(compression());
-app.use(
-  session({
-    secret: process.env.SESSION_SECR,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECR,
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
+
+app.use(session({
+  store: new pgSession({
+    pool,
+    tableName: 'sessions',
+  }),
+  secret: process.env.SESSION_SECR,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // Set to true if using HTTPS
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+  },
+}));
+
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());

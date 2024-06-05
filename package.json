@@ -20,6 +20,7 @@
     "cheerio": "^1.0.0-rc.12",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
+    "connect-pg-simple": "^9.0.1",
     "crypto": "^1.0.1",
     "debug": "^4.3.4",
     "dotenv": "^16.4.5",
@@ -34,6 +35,6 @@
     "nodemon": "^3.1.0",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.11.5"
+    "pg": "^8.12.0"
   }
 }
