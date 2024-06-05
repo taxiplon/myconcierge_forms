@@ -921,7 +921,7 @@ app.get('/reservation', compression(), (req, res) => {
 });
 
 
-app.post('/reservation', compression(), upload.array('resImages', 3), (req, res) => {
+app.post('/reservation', compression(), upload.array('resImages', 3), async (req, res) => {
   const {
     resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
     resMinCon, resPrice, resDescription, resOpen, resClose,
@@ -948,24 +948,23 @@ app.post('/reservation', compression(), upload.array('resImages', 3), (req, res)
     return;
   }
 
+  const values = [
+    resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
+    resMinCon, resPrice, resDescription, resOpen, resClose,
+    weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday,
+    images[0] ? Buffer.from(images[0]) : null, 
+    images[1] ? Buffer.from(images[1]) : null, 
+    images[2] ? Buffer.from(images[2]) : null
+  ];
+
+  debug('Values to insert:', values);
+
   pool.connect((err, client, release) => {
     if (err) {
       debug('Error acquiring client:', err);
       res.status(500).send('Internal Server Error');
       return;
     }
-
-    const values = [
-      resTitle, resURL, resVat, resPhone, resNotEmail, resEmail, resAddress, resZipCode, resCat,
-      resMinCon, resPrice, resDescription, resOpen, resClose,
-      weekdays.monday, weekdays.tuesday, weekdays.wednesday, weekdays.thirsday, weekdays.friday, weekdays.suterday, weekdays.sunday,
-      images[0] ? Buffer.from(images[0]) : null, 
-      images[1] ? Buffer.from(images[1]) : null, 
-      images[2] ? Buffer.from(images[2]) : null
-    ];
-
-    console.log('Values to insert:', values);
-    console.log("debugging");
 
     client.query(
       `INSERT INTO reservations (
