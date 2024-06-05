@@ -44,20 +44,6 @@ app.use(compression());
 //   })
 // );
 
-app.use(session({
-  store: new pgSession({
-    pool,
-    tableName: 'sessions',
-  }),
-  secret: process.env.SESSION_SECR,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false, // Set to true if using HTTPS
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
-  },
-}));
-
 
 app.use(flash());
 app.use(passport.initialize());
@@ -101,6 +87,20 @@ const pool = new Pool({
   password: process.env.DATABASE_PASSWORD,
   port: process.env.DATABASE_PORT,
 });
+
+app.use(session({
+  store: new pgSession({
+    pool,
+    tableName: 'sessions',
+  }),
+  secret: process.env.SESSION_SECR,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // Set to true if using HTTPS
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+  },
+}));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get('/login', compression(), (req, res) => {
