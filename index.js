@@ -1020,25 +1020,37 @@ app.post('/everypay', compression(), (req, res) => {
     resSupplierId
   } = req.query;
 
-
   pool.connect((err, client, release) => {
     if (err) {
-      debug("Error acquiring client:", err);
+      console.error("Error acquiring client:", err);
       res.status(500).send("Internal Server Error");
       return;
     }
 
+    const {
+      cname,
+      ctitle,
+      description,
+      email,
+      vatNumber,
+      phoneNumber,
+      address,
+      zipCode,
+      ibanNumber,
+      ibanName
+    } = req.body;
+
     const values = [
-      req.body.cname,
-      req.body.ctitle,
-      req.body.description,
-      req.body.email,
-      req.body.vatNumber,
-      req.body.phoneNumber,
-      req.body.address,
-      req.body.zipCode,
-      req.body.ibanNumber,
-      req.body.ibanName,
+      cname,
+      ctitle,
+      description,
+      email,
+      vatNumber,
+      phoneNumber,
+      address,
+      zipCode,
+      ibanNumber,
+      ibanName,
       transferSupplierId !== undefined ? transferSupplierId : null,
       hotelId !== undefined ? hotelId : null,
       tourSupplierId !== undefined ? tourSupplierId : null,
@@ -1064,34 +1076,32 @@ app.post('/everypay', compression(), (req, res) => {
         release();
 
         if (err) {
-          debug("Error executing query:", err);
+          console.error("Error executing query:", err);
           res.status(500).send("Internal Server Error");
           return;
         }
 
-        // Redirect to the '/final' route
-        res.redirect('/final');
+        // Send the email after the database operation is successful
+        const msg = {
+          to: 'vkokora@taxiplon.gr', // recipient's email address
+          from: 'info@myconcierge.gr', // your verified sender email address
+          subject: 'New Form Submission to MyConcierge',
+          text: `You have a new form submission:\n\nName: ${cname}\nEmail: ${email}\nPhone: ${phoneNumber}`
+        };
+
+        sgMail
+          .send(msg)
+          .then(() => {
+            console.log('Email sent');
+            // Redirect to the '/final' route
+            res.redirect('/final');
+          })
+          .catch((error) => {
+            console.error('Error sending email:', error);
+            res.status(500).send('Error sending email');
+          });
       }
     );
-
-      // Configure the email options
-  const msg = {
-    to: 'vkokora@taxiplon.gr', // recipient's email address
-    from: 'info@myconcierge.gr', // your verified sender email address
-    subject: 'New Form Submission to MyConcierge',
-    text: `You have a new form submission:\n\nName: ${cname}\nEmail: ${email}\nPhone: ${phoneNumber}`
-};
-
-// Send the email
-sgMail
-    .send(msg)
-    .then(() => {
-        debug('Email sent');
-    })
-    .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error sending email');
-    });
   });
 });
 
