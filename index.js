@@ -1086,7 +1086,7 @@ app.post('/everypay', compression(), (req, res) => {
           to: 'vkokora@taxiplon.gr', // recipient's email address
           from: 'info@myconcierge.gr', // your verified sender email address
           subject: 'New Form Submission to MyConcierge',
-          text: `You have a new form submission:\n\nName: ${cname}\nEmail: ${email}\nPhone: ${phoneNumber}`
+          text: `Έχετε μία νέα φόρμα εγγραφής στο MyConcierge:\n\nΕπωνυμία: ${cname}\nEmail: ${email}\nΤηλέφωνο: ${phoneNumber}`
         };
 
         sgMail
