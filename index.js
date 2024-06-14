@@ -1073,9 +1073,8 @@ app.post('/everypay', compression(), (req, res) => {
         res.redirect('/final');
       }
     );
-  });
 
-  // Configure the email options
+      // Configure the email options
   const msg = {
     to: 'vkokora@taxiplon.gr', // recipient's email address
     from: 'info@myconcierge.gr', // your verified sender email address
@@ -1093,6 +1092,7 @@ sgMail
         console.error(error);
         res.status(500).send('Error sending email');
     });
+  });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
