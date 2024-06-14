@@ -6,7 +6,6 @@ import multer from 'multer';
 import fs from 'fs';
 import bcrypt from 'bcrypt';
 import passport from "passport";
-import { Strategy } from "passport-local";
 import session from "express-session";
 import env from "dotenv";
 import { Strategy as LocalStrategy } from 'passport-local';
@@ -16,6 +15,9 @@ import compression from 'compression';
 import helmet from "helmet";
 import { rateLimit } from 'express-rate-limit';
 import PgSession from 'connect-pg-simple';
+import sgMail from '@sendgrid/mail';
+
+
 
 
 
@@ -86,6 +88,10 @@ const pool = new Pool({
   password: process.env.DATABASE_PASSWORD,
   port: process.env.DATABASE_PORT,
 });
+
+// Set SendGrid API key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get('/login', compression(), (req, res) => {
@@ -1068,6 +1074,25 @@ app.post('/everypay', compression(), (req, res) => {
       }
     );
   });
+
+  // Configure the email options
+  const msg = {
+    to: 'vkokora@taxiplon.gr', // recipient's email address
+    from: 'info@myconcierge.gr', // your verified sender email address
+    subject: 'New Form Submission to MyConcierge',
+    text: `You have a new form submission:\n\nName: ${cname}\nEmail: ${email}\nPhone: ${phoneNumber}`
+};
+
+// Send the email
+sgMail
+    .send(msg)
+    .then(() => {
+        debug('Email sent');
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error sending email');
+    });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
