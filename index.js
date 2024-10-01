@@ -133,7 +133,7 @@ app.post('/register', compression(), async (req, res) => {
     client = await pool.connect();
 
     // Check if the email already exists in the database
-    const checkResult = await client.query("SELECT * FROM users WHERE email = $1", [email]);
+    const checkResult = await client.query("SELECT * FROM users_MyConcierge WHERE email = $1", [email]);
 
     if (checkResult.rows.length > 0) {
       message = "Ο χρήστης υπάρχει ήδη. Δοκιμάστε να κάνετε σύνδεση.";
@@ -144,7 +144,7 @@ app.post('/register', compression(), async (req, res) => {
     const hash = await bcrypt.hash(password1, 10); // 10 is the saltRounds
 
     // Insert the new user into the database
-    const result = await client.query("INSERT INTO users (email, psw) VALUES($1, $2) RETURNING *", [email, hash]);
+    const result = await client.query("INSERT INTO users_MyConcierge (email, psw) VALUES($1, $2) RETURNING *", [email, hash]);
 
     const user = result.rows[0];
     if (result.rows && result.rows.length > 0) {
@@ -1125,6 +1125,7 @@ app.get('/final', compression(), (req, res) => {
   //   // Extract the image data from the query result
   //   const imageData = result.rows[0].transferlogo;
   //   //debug(imageData);
+ 
 
   //   // Convert the image data to a Base64-encoded string
   //   const imageSrc = `data:image/jpeg;base64,${imageData.toString('base64')}`;
@@ -1144,7 +1145,7 @@ passport.use(new LocalStrategy(
     let client;
     try {
       client = await pool.connect();
-      const checkResult = await client.query('SELECT * FROM users WHERE email = $1', [loginEmail]);
+      const checkResult = await client.query('SELECT * FROM users_MyConcierge WHERE email = $1', [loginEmail]);
       if (checkResult.rows.length > 0) {
         const user = checkResult.rows[0];
         const storedHashedPassword = user.psw;
@@ -1176,7 +1177,7 @@ passport.deserializeUser(async (id, done) => {
   let client;
   try {
     client = await pool.connect();
-    const result = await client.query('SELECT * FROM users WHERE id = $1', [id]);
+    const result = await client.query('SELECT * FROM users_MyConcierge WHERE id = $1', [id]);
     if (result.rows.length > 0) {
       const user = result.rows[0];
       done(null, user);
