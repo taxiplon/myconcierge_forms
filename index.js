@@ -1083,7 +1083,7 @@ app.post('/everypay', compression(), (req, res) => {
 
         // Send the email after the database operation is successful
         const msg = {
-          to: 'vkokora@taxiplon.gr', // recipient's email address
+          to: 'v.lekkas@taxiplon.gr', // recipient's email address
           from: 'info@myconcierge.gr', // your verified sender email address
           subject: 'New Form Submission to MyConcierge',
           text: `Έχετε μία νέα φόρμα εγγραφής στο MyConcierge:\n\nΕπωνυμία: ${cname}\nEmail: ${email}\nΤηλέφωνο: ${phoneNumber}`
